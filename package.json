@@ -1,0 +1,16 @@
+{
+  "name": "playwright-scraper",
+  "version": "1.0.0",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    // installs Chromium + Linux deps during Render build
+    "postinstall": "npx playwright install --with-deps chromium",
+    // what Render runs to keep the container alive
+    "start": "node scraper.js"
+  },
+  "dependencies": {
+    "playwright": "^1.43.0",
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
