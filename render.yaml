@@ -1,7 +1,6 @@
 services:
   - type: web
     name: playwright-scraper
-    env: node
+    env: docker
     plan: free
-    buildCommand: ""                 # default “npm install” is fine
-    startCommand: npm start          # runs node scraper.js
+    dockerfilePath: Dockerfile
