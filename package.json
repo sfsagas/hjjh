@@ -7,7 +7,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "postinstall": "npx playwright install --with-deps chromium",
+    "postinstall": "npx playwright install chromium",
 
     "start": "node scraper.js"
   },
