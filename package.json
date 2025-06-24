@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
- "scripts": {
-  "postinstall": "npx playwright install chromium",
-  "start": "node scraper.js"
-},
-"engines": { "node": ">=18" },
-"packageManager": "npm@10"   
-  "dependencies": {
+
+  "scripts": {
+    "postinstall": "npx playwright install chromium",
+    "start": "node scraper.js"
+  },
+
+  "engines": { "node": ">=18" },
+
+  "packageManager": "npm@10",         
+
+  "dependencies": {                   
     "playwright": "^1.53.0",
     "express": "^4.19.2",
     "cors": "^2.8.5"
