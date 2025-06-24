@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=18"
-  },
-  "scripts": {
-    "postinstall": "npx playwright install chromium",
+  "engines": { "node": ">=18" },
 
+  "scripts": {
+
+    "postinstall": "npx playwright install --with-deps chromium",
+
+    // (b) boot your API
     "start": "node scraper.js"
   },
+
   "dependencies": {
     "playwright": "^1.53.0",
     "express": "^4.19.2",
     "cors": "^2.8.5"
   }
 }
-
