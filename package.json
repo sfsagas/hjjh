@@ -1,15 +1,12 @@
-{
-  "name": "playwright-scraper",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "engines": {
-    "node": ">=18"
-  },
-  "scripts": {
-    "postinstall": "npx playwright install chromium",
 
-    "start": "node scraper.js"
+
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node scraper.js",
+    "postinstall": "npx playwright install --with-deps chromium"
   },
   "dependencies": {
     "playwright": "^1.53.0",
@@ -17,4 +14,3 @@
     "cors": "^2.8.5"
   }
 }
-
