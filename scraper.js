@@ -1,25 +1,19 @@
-const express = require("express");
-const { chromium } = require("playwright");
+import express from 'express';
+import { chromium } from 'playwright';
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-const PORT = process.env.PORT || 3001;     // ← dynamic for Render
-
-app.get("/scrape", async (req, res) => {
+app.get('/scrape', async (req, res) => {
   const url = req.query.url;
-  if (!url) return res.status(400).send("Missing URL");
-
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: "domcontentloaded" });
-
-  const content = await page.evaluate(() => {
-    const p   = [...document.querySelectorAll("p")].map(el => el.innerText);
-    const a   = [...document.querySelectorAll("a")].map(el => ({ text: el.innerText, href: el.href }));
-    return { text: p.filter(Boolean), links: a };
-  });
-
+  await page.goto(url);
+  const content = await page.content();
   await browser.close();
-  res.json(content);
+  res.send({ html: content });
 });
 
-app.listen(PORT, () => console.log(`🧪 Scraper running on ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
+});
