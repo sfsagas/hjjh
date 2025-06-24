@@ -17,3 +17,17 @@
     "cors": "^2.8.5"
   }
 }
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node scraper.js",
+  
+    "postinstall": "npx playwright install --with-deps chromium"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "playwright": "^1.44.0"
+  }
+}
