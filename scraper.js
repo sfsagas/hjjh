@@ -2,6 +2,11 @@ import express from 'express';
 import { chromium } from 'playwright';
 import cors from 'cors';
 
+const browser = await chromium.launch({
+  headless: true,
+  args: ['--no-sandbox','--disable-setuid-sandbox']
+});
+
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
@@ -13,10 +18,15 @@ app.get('/scrape', async (req, res, next) => {
     const { url } = req.query;
     if (!url) throw new Error('Query param ?url is required');
 
-    const browser  = await chromium.launch({ args: ['--no-sandbox'] });
-    const page     = await browser.newPage();
+ 
 
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+
+
+const page = await browser.newPage();
+
+await page.close();           
+
+
 
     /* ---------- structured extraction ---------- */
     const data = await page.evaluate(() => {
